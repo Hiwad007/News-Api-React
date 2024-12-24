@@ -1,6 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+
+
+
+
+
 
 function News() {
+    let [search , setSearch] = useState()
+    let [newsData , setNewsData] = useState([])
+    let API_KEY = "d17463cb2784414e832968f3ae053548";
+    const getData = async() =>{
+        
+        let response = await fetch(`https://newsapi.org/v2/everything?q=${search}&apiKey=${API_KEY}`);
+        let jsonData =await response.json()
+        console.log(jsonData);
+        setNewsData(jsonData.articles)
+    
+    }
+    const inputEvent = (e) =>{
+        setSearch(e.target.value)
+    }
+    useEffect(()=>{
+        getData()
+    },[])
   return (
     <>
     <nav>
@@ -13,16 +35,33 @@ function News() {
             <li>Headline</li>
         </ul>
         <div className="Search">
-            <input type="text" name="" placeholder='Search Here' id="" />
-            <button>Search</button>
+            <input type="text" value={search} name="" onChange={(e)=>setSearch(e.target.value)} placeholder='Search Here' id="" />
+            <button onClick={getData}>Search</button>
         </div>
     </nav>
     <div className="Category">
-        <button>Sports</button>
-        <button>Entertainment</button>
-        <button>Politics</button>
-        <button>Weather</button>
-        <button>Technologies</button>
+        <button  onClick={inputEvent} value="Sports">Sports</button>
+        <button onClick={inputEvent} value="Entertainment">Entertainment</button>
+        <button onClick={inputEvent} value="Politics">Politics</button>
+        <button onClick={inputEvent} value="Weather">Weather</button>
+        <button onClick={inputEvent} value="Technologies">Technologies</button>
+    </div>
+    <div className="product">
+        {newsData.map((currValue , index)=>{
+            if(currValue.urlToImage){
+                return(
+                    <div className="card" key={index}>
+                        <h2>{currValue.title}</h2>
+                        <img src={currValue.urlToImage} alt="" />
+                        <p>{currValue.description}</p>
+                        <h3>{currValue.auther}</h3>
+                        <button onClick={()=>window.open(currValue.url)}>Read More</button>
+            
+
+                    </div>
+                )
+            }
+        })}
     </div>
     </>
   )

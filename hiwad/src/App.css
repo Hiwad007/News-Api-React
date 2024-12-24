@@ -44,11 +44,49 @@ nav ul li{
 }
 .Category button{
   padding: 12px 26px;
-  margin-left: 20px;
-  font-size: 16px;
+  margin-left: 30px;
+  font-size: 20px;
   border-radius: 10px;
   font-weight: bold;
   background:linear-gradient(to right, rgb(27, 27, 97),rgb(10, 38, 179));
   color: aliceblue;
   box-shadow: 2px 3px 3px rgb(139, 109, 109);
+}
+.product{
+  width: 1400px;
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: space-around;
+ margin: auto;
+}
+
+.card{
+  width: 600px;
+  height: 600px;
+  background: linear-gradient(to right,rgb(65, 65, 149),rgb(2, 2, 49));
+  margin: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.card h2, h3, p{
+  font-size: 24px;
+}
+.card img{
+  height: 300px;
+  width: 300px;
+  border-radius: 20px;
+  margin: 20px;
+
+}
+.card button{
+  padding: 8px 12px;
+  margin-top: 20px;
+  padding: 12px 26px;
+  font-size: 16px;
+  border-radius: 10px;
+  font-weight: bold;
+  background: linear-gradient(to right,rgb(65, 65, 149),rgb(2, 2, 49));
+  color: aliceblue;
 }
